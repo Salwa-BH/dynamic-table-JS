@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dynamic table with JS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <style>
+        #hna td {
+            width: 80px;
+            height: 80px;
+        } 
+        h1 {
+            text-transform: uppercase;
+            font-style: oblique;
+            text-shadow: 3px 2px rgb(235, 15, 15);
+            font-size: 600%;
+        }
+    </style>
+</head>
+<body style=" background-color: #b0f59b; text-align:center;">
+    <br> <br> <button type="button" class="btn btn-primary" onclick="body.style.backgroundColor = chcolor()">Tap to change background-color of the page</button>
+    <br> <br> <h1 style="text-align: center ">Create a dynamic table</h1>
+    <br> <br><br> <br><form>
+        <h4>Enter the number of lines and columns that you want to create:</h4>
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <h5>Lines:</h5>
+                <input type="text" id="lin" value="5"><br>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <h5>Columns:</h5>
+                <input type="text" id="col" value="4"><br><br>
+            </div>
+        </div>
+        
+        <button type="button" class="btn btn-primary" onclick="Create()">Create It</button>
+    </form>
+    <p id="rr"></p>
+    <p id="vv"></p>
+    <p id="bb"></p>
+    <p id="hna"></p>
+    
+    <script>
+        
+        function Create() {
+            let l= parseInt( document.querySelector('#lin').value);
+            let c= parseInt( document.querySelector('#col').value);
+            let tab="<table border='2' width='100%' border-style:solid>";
+            for( var i=0; i<l; i++){
+                tab+='<tr>';
+                    for (var j=0; j<c; j++){
+                        tab+="<td onclick='changeColor(this)'>" +'</td>'
+                    
+                    }
+                tab+='</tr>';    
+            }
+            tab+="</table>";
+            document.querySelector('#hna').innerHTML=tab;
+        }
+        function changeColor(td) {
+            td.style.backgroundColor = chcolor()
+        }
+        function ran() {
+            return Math.floor(Math.random() * 255 );
+        }
+        function chcolor() {
+            let r=ran();
+            let v=ran();
+            let b=ran();
+            return 'rgb(' + r + ',' + v + ',' + b + ')'
+        }
+    </script>
+ 
+</body>
+</html>
